@@ -1,0 +1,9 @@
+[submodule "gonc"]
+	path = gonc
+	url = https://github.com/ttdxq/gonc.git
+[submodule "tun2socks"]
+	path = tun2socks
+	url = https://github.com/xjasonlyu/tun2socks.git
+[submodule "anet"]
+	path = anet
+	url = https://github.com/ttdxq/anet.git
