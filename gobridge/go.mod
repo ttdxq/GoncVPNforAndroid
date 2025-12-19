@@ -9,6 +9,7 @@ replace github.com/xjasonlyu/tun2socks/v2 => ../tun2socks
 require (
 	github.com/threatexpert/gonc/v2 v2.0.0-00010101000000-000000000000
 	github.com/xjasonlyu/tun2socks/v2 v2.0.0-00010101000000-000000000000
+	golang.org/x/mobile v0.0.0-20251209145715-2553ed8ce294
 )
 
 require (
@@ -44,7 +45,6 @@ require (
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect
 	golang.org/x/crypto v0.46.0 // indirect
-	golang.org/x/mobile v0.0.0-20251209145715-2553ed8ce294 // indirect
 	golang.org/x/mod v0.31.0 // indirect
 	golang.org/x/net v0.48.0 // indirect
 	golang.org/x/sync v0.19.0 // indirect

@@ -1,4 +1,4 @@
-package com.example.goncp2pvpn.data
+package cyou.ttdxq.goncvpn.android.data
 
 import android.content.Context
 import androidx.datastore.core.DataStore

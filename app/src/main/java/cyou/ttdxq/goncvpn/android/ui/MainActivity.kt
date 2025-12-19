@@ -1,4 +1,4 @@
-package com.example.goncp2pvpn.ui
+package cyou.ttdxq.goncvpn.android.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -15,9 +15,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.goncp2pvpn.core.GoncVpnService
-import com.example.goncp2pvpn.data.SettingsStore
-import com.example.goncp2pvpn.data.LogRepository
+import cyou.ttdxq.goncvpn.android.core.GoncVpnService
+import cyou.ttdxq.goncvpn.android.data.SettingsStore
+import cyou.ttdxq.goncvpn.android.data.LogRepository
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.firstOrNull
 import androidx.compose.foundation.lazy.items

@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.goncp2pvpn"
+    namespace = "cyou.ttdxq.goncvpn.android"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.goncp2pvpn"
+        applicationId = "cyou.ttdxq.goncvpn.android"
         minSdk = 30
         targetSdk = 36
         versionCode = 1

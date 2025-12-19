@@ -1,4 +1,4 @@
-package com.example.goncp2pvpn.core
+package cyou.ttdxq.goncvpn.android.core
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -9,9 +9,9 @@ import android.os.Build
 import android.os.ParcelFileDescriptor
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.example.goncp2pvpn.R
-import com.example.goncp2pvpn.ui.MainActivity
-import com.example.goncp2pvpn.data.LogRepository
+import cyou.ttdxq.goncvpn.android.R
+import cyou.ttdxq.goncvpn.android.ui.MainActivity
+import cyou.ttdxq.goncvpn.android.data.LogRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -22,8 +22,8 @@ import gobridge.Logger
 
 class GoncVpnService : VpnService() {
     companion object {
-        const val ACTION_START = "com.example.goncp2pvpn.START"
-        const val ACTION_STOP = "com.example.goncp2pvpn.STOP"
+        const val ACTION_START = "cyou.ttdxq.goncvpn.android.START"
+        const val ACTION_STOP = "cyou.ttdxq.goncvpn.android.STOP"
         const val EXTRA_P2P_SECRET = "p2p_secret"
         const val EXTRA_ROUTE_CIDRS = "route_cidrs" // Newline separated
         private const val NOTIFICATION_ID = 1
