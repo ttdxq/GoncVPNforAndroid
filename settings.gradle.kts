@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "goncP2PVPN"
+rootProject.name = "Gonc VPN"
 include(":app")

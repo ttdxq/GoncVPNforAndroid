@@ -121,7 +121,7 @@ fun VpnControlScreen(settingsStore: SettingsStore, onStartVpn: () -> Unit, onSto
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Text("Gonc VPN Config", style = MaterialTheme.typography.headlineMedium)
+        Text("Gonc VPN", style = MaterialTheme.typography.headlineMedium)
 
         OutlinedTextField(
             value = secretInput,

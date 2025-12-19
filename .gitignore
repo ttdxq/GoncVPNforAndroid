@@ -20,3 +20,7 @@ local.properties
 /app/src/main/jniLibs/
 /app/libs/goncvpn.aar
 /app/libs/goncvpn-sources.jar
+*.apk
+/app/build/
+/app/release/
+/app/debug/
