@@ -108,5 +108,12 @@ func StartTun2Socks(fd int, proxyUrl string, deviceName string, mtu int, logLeve
 
 // StopTun2Socks stops the tun2socks engine.
 func StopTun2Socks() {
+	defer func() {
+		if r := recover(); r != nil {
+			if androidLogger != nil {
+				androidLogger.Log(fmt.Sprintf("PANIC in StopTun2Socks: %v", r))
+			}
+		}
+	}()
 	engine.Stop()
 }

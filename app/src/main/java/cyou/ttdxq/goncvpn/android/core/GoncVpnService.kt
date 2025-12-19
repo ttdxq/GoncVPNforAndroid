@@ -132,20 +132,22 @@ class GoncVpnService : VpnService() {
     }
 
     private fun stopVpn() {
-        try {
-            Gobridge.stopTun2Socks()
-        } catch (e: Exception) {
-            Log.e(TAG, "Error stopping tun2socks", e)
+        serviceScope.launch(Dispatchers.IO) {
+            try {
+                Gobridge.stopTun2Socks()
+            } catch (e: Exception) {
+                Log.e(TAG, "Error stopping tun2socks", e)
+            }
+            
+            try {
+                vpnInterface?.close()
+            } catch (e: Exception) {
+                Log.e(TAG, "Error closing VPN interface", e)
+            }
+            vpnInterface = null
+            stopForeground(true)
+            stopSelf()
         }
-        
-        try {
-            vpnInterface?.close()
-        } catch (e: Exception) {
-            Log.e(TAG, "Error closing VPN interface", e)
-        }
-        vpnInterface = null
-        stopForeground(true)
-        stopSelf()
     }
 
     override fun onDestroy() {
