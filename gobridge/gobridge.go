@@ -2,6 +2,7 @@ package gobridge
 
 import (
 	"bufio"
+	"context"
 	"fmt"
 	"os"
 	"strings"
@@ -21,6 +22,7 @@ type Logger interface {
 }
 
 var androidLogger Logger
+var goncCancel context.CancelFunc
 
 // SetLogger sets the logger for Android
 func SetLogger(l Logger) {
@@ -61,10 +63,19 @@ func StartGonc(args string) {
 			}
 		}
 	}()
+
+	// Create context for cancellation
+	ctx, cancel := context.WithCancel(context.Background())
+	goncCancel = cancel
+
 	argSlice := strings.Split(args, " ")
 	// Filter empty strings if any
 	var cleanArgs []string
-	cleanArgs = append(cleanArgs, "gonc") // argv0
+	// cleanArgs = append(cleanArgs, "gonc") // argv0 is handled by AppNetcatConfigByArgs? No, typically args[0] is progname.
+	// Check apps.nc usage. Main calls it with os.Args[1:].
+	// App_Netcat_main calls AppNetcatConfigByArgs("gonc", args).
+	// usage: config, err := AppNetcatConfigByArgs("gonc", args)
+
 	for _, arg := range argSlice {
 		if strings.TrimSpace(arg) != "" {
 			cleanArgs = append(cleanArgs, arg)
@@ -72,14 +83,28 @@ func StartGonc(args string) {
 	}
 
 	console := &misc.ConsoleIO{}
-	// We can't easily capture ConsoleIO output unless we modify gonc,
-	// but we can capture stdout/stderr via SetLogger redirection above when initialized.
 
-	// Create a config to redirect logs explicitly if possible, or just rely on os.Stdout/Stderr capture
-	// apps.App_Netcat_main calls AppNetcatConfigByArgs which sets LogWriter to os.Stderr
-	// So our pipe redirection in SetLogger should handle it.
+	// Manually parse args and run to inject context
+	config, err := apps.AppNetcatConfigByArgs("gonc", cleanArgs)
+	if err != nil {
+		if androidLogger != nil {
+			androidLogger.Log(fmt.Sprintf("Error parsing gonc args: %v", err))
+		}
+		return
+	}
+	config.ConsoleMode = true
+	config.GlobalCtx = ctx
 
-	apps.App_Netcat_main(console, cleanArgs[1:])
+	apps.App_Netcat_main_withconfig(console, config)
+}
+
+// StopGonc stops the gonc execution.
+func StopGonc() {
+	if goncCancel != nil {
+		goncCancel()
+		// goncCancel = nil // Keep it until next Start?
+		// Better to leave it, StartGonc overwrites it.
+	}
 }
 
 // StartTun2Socks starts the tun2socks engine with the given file descriptor.

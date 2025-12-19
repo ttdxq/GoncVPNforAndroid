@@ -149,6 +149,12 @@ class GoncVpnService : VpnService() {
                 Log.e(TAG, "Error stopping tun2socks", e)
             }
             
+            try {
+                Gobridge.stopGonc()
+            } catch (e: Exception) {
+                Log.e(TAG, "Error stopping gonc", e)
+            }
+            
             stopForeground(true)
             stopSelf()
         }
@@ -160,6 +166,7 @@ class GoncVpnService : VpnService() {
         // Ensure cleanup
         try {
             Gobridge.stopTun2Socks()
+            Gobridge.stopGonc()
             vpnInterface?.close()
         } catch(_: Exception){}
     }
