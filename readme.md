@@ -63,7 +63,7 @@ graph TD
 > [!TIP]
 > **重要提示**：本应用仅支持作为 P2P 客户端使用。在使用前，请确保您已在服务端启动了 `gonc` 隧道：
 > ```bash
-> gonc-p2p <您的口令> -linkagent
+> gonc -p2p <您的口令> -linkagent
 > ```
 
 1.  启动 App。
