@@ -1,0 +1,16 @@
+# NOTICE
+
+This project (Gonc VPN Android) includes or utilizes the following third-party components:
+
+## [gonc](https://github.com/threatexpert/gonc)
+*   **License**: MIT License
+*   **Description**: Go-based P2P networking tool.
+*   **Modifications**: Modified for Android compatibility (replaced `os.Exit` with `panic/recover` for process stability).
+
+## [tun2socks](https://github.com/xjasonlyu/tun2socks)
+*   **License**: MIT License
+*   **Description**: A tun2socks implementation that supports multiple proxy protocols.
+
+## [anet](https://github.com/wlynxg/anet)
+*   **License**: BSD 3-Clause License
+*   **Modifications**: Modified for Android compatibility (fixed `zoneCache` linkname issues).
