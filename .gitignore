@@ -13,3 +13,10 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Build artifacts
+*.aar
+*.jar
+/app/src/main/jniLibs/
+/app/libs/goncvpn.aar
+/app/libs/goncvpn-sources.jar
