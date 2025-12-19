@@ -6,7 +6,6 @@
 
 Gonc VPN 是一款基于 Go 语言核心开发的 Android P2P VPN 客户端。它通过集成 `gonc` 和 `tun2socks` 核心，利用 Android `VpnService` 实现了高性能、低延迟的私有网络加密访问。
 
-本项目解决了 Go 语言网络栈在 Android 平台上的多个痛点，包括 **Android 11+ 无法获取 MAC 地址导致的崩溃** 以及 **Go 底层 `os.Exit` 导致的进程稳定性问题**。
 
 ---
 
@@ -14,12 +13,8 @@ Gonc VPN 是一款基于 Go 语言核心开发的 Android P2P VPN 客户端。�
 
 *   **高性能 P2P 通讯**：基于 `gonc` (v2) 协议，实现端对端的加密隧道。
 *   **Android 11+ 原生兼容**：集成特殊的 `anet` 补丁库，通过 Netlink `RTM_GETADDR` 绕过系统对网卡信息的封锁，保证在最新 Android 系统上稳定发现网络接口。
-*   **工业级稳定性**：
-    *   重写了 Go 核心的退出逻辑，将 `os.Exit` 替换为 `panic/recover`。
-    *   即使 Go 逻辑发生严重错误，Android 宿主进程也不会被强杀，VPN 服务可优雅降级或重启。
 *   **全协议支持**：完美支持 **IPv4 & IPv6** 全局代理。
 *   **JNI 桥接架构**：使用 `gomobile` 将 Go 核心封装为 AAR 库，通过原生内存访问传递文件描述符（FD），比运行二进制文件的方案更安全、更高效。
-*   **网络优化**：预设 1400 MTU，针对移动网络环境进行了包分片优化。
 
 ---
 
@@ -86,7 +81,7 @@ graph TD
 
 ## 🤝 贡献与反馈
 
-欢迎提交 Issue 和 Pull Request！我们特别欢迎针对 P2P 连接效率、UI/UX 改进以及多平台兼容性的建议。
+欢迎提交 Issue 和 Pull Request！我们特别欢迎针对UI/UX 改进以及多平台兼容性的建议。
 
 ---
 *Created by [ttdxq](https://github.com/ttdxq)*
