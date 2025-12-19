@@ -54,6 +54,13 @@ func (w *LogWriter) Write(p []byte) (n int, err error) {
 // StartGonc starts the gonc P2P connection.
 // This function blocks, so it should be run in a goroutine on the Android side.
 func StartGonc(args string) {
+	defer func() {
+		if r := recover(); r != nil {
+			if androidLogger != nil {
+				androidLogger.Log(fmt.Sprintf("PANIC in StartGonc: %v", r))
+			}
+		}
+	}()
 	argSlice := strings.Split(args, " ")
 	// Filter empty strings if any
 	var cleanArgs []string
@@ -81,6 +88,13 @@ func StartGonc(args string) {
 // deviceName: The name of the device (not strictly needed for fd:// but good for logging).
 // mtu: The MTU of the interface.
 func StartTun2Socks(fd int, proxyUrl string, deviceName string, mtu int, logLevel string) {
+	defer func() {
+		if r := recover(); r != nil {
+			if androidLogger != nil {
+				androidLogger.Log(fmt.Sprintf("PANIC in StartTun2Socks: %v", r))
+			}
+		}
+	}()
 	key := &engine.Key{
 		Device:   fmt.Sprintf("fd://%d", fd),
 		Proxy:    proxyUrl,
